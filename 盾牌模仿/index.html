@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: yellowgreen;
+        }
+
+        .box {
+            width: 418px;
+            margin: 100px auto;
+        }
+
+        img {
+            transition: transformr 1s linear;
+            position: relative;
+            z-index: 998;
+        }
+        .btnBox{
+            position: relative;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <!-- img src="./images/shield_1_0$.png"*6 -->
+        <!-- <img src="./images/shield_1_01.png" alt="">
+        <img src="./images/shield_1_02.png" alt="">
+        <img src="./images/shield_1_03.png" alt="">
+        <img src="./images/shield_1_04.png" alt="">
+        <img src="./images/shield_1_05.png" alt="">
+        <img src="./images/shield_1_06.png" alt=""> -->
+        <!-- img[src="./images/shield_1_0$.png"]*6 -->
+        <img src="./images/shield_1_01.png" alt="">
+        <img src="./images/shield_1_02.png" alt="">
+        <img src="./images/shield_1_03.png" alt="">
+        <img src="./images/shield_1_04.png" alt="">
+        <img src="./images/shield_1_05.png" alt="">
+        <img src="./images/shield_1_06.png" alt="">
+        <img src="./images/shield_1_07.png" alt="">
+        <img src="./images/shield_1_08.png" alt="">
+        <img src="./images/shield_1_09.png" alt="">
+        <div class="btnBox">
+            <input type="button" value="打碎" id="fragment">
+            <input type="button" value="复原" id="recover">
+        </div>
+    </div>
+    <script>
+        //获取图片数组
+        var imgs = document.getElementsByTagName("img");
+        //为打碎按钮注册点击事件
+        var fragmentBtn = document.getElementById("fragment");
+        fragmentBtn.onclick = function () {
+            for (var i = 0; i < imgs.length; i++) {
+                //获取碎片当期随机角度
+                var degRandom = Math.round(Math.random() * 360);
+                //获取碎片当前相对于原来位置的x轴大小
+                var RandomX = Math.round(Math.random() * 800) - 400;
+                //获取碎片当前相对于原来位置的y轴大小
+                var RandomY = Math.round(Math.random() * 800) - 400;
+
+                imgs[i].style.transform = "rotate(" + degRandom + "deg) translate(" + RandomX + "px," + RandomY +
+                    "px)";
+            }
+        }
+
+        //为复原按钮注册点击事件
+        var recoverBtn = document.getElementById("recover");
+        recoverBtn.onclick = function () {
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].style.transform = "rotate(0) translate(0,0)";
+            }
+        }
+    </script>
+</body>
+
+</html>

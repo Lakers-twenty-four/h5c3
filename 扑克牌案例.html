@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* body {
+            background-image: url("./image/bg.jpg");
+        } */
+        .photo {
+            position: relative;
+            width: 200px;
+            margin: 400px auto;
+        }
+        img {
+            position: absolute;
+            top:0px;
+            left:0px;
+            width: 200px;
+            transition: transform 1s linear;
+            transform-origin: 0 0;
+        }
+        .photo:hover>img:nth-child(1) {
+            transform: rotate(60deg);
+        }
+        .photo:hover>img:nth-child(2) {
+            transform: rotate(120deg);
+        }
+        .photo:hover>img:nth-child(3) {
+            transform: rotate(180deg);
+        }
+        .photo:hover>img:nth-child(4) {
+            transform: rotate(240deg);
+        }
+        .photo:hover>img:nth-child(5) {
+            transform: rotate(300deg);
+        }
+        .photo:hover>img:nth-child(6) {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="photo">
+        <img src="./image/9922720e0cf3d7ca2cfcd4f2fe1fbe096b63a928.jpg" alt="">
+        <img src="./image/9922720e0cf3d7ca2cfcd4f2fe1fbe096b63a928.jpg" alt="">
+        <img src="./image/9922720e0cf3d7ca2cfcd4f2fe1fbe096b63a928.jpg" alt="">
+        <img src="./image/9922720e0cf3d7ca2cfcd4f2fe1fbe096b63a928.jpg" alt="">
+        <img src="./image/9922720e0cf3d7ca2cfcd4f2fe1fbe096b63a928.jpg" alt="">
+        <img src="./image/9922720e0cf3d7ca2cfcd4f2fe1fbe096b63a928.jpg" alt="">
+    </div>
+</body>
+</html>
