@@ -47,7 +47,7 @@ H5第一天
 ![](./mdImg/內减模式2.png)
 
 > ### 內减模式 ###
-![]("https://github.com/Lakers-twenty-four/h5c3/blob/master/mdImg/%E5%85%A7%E5%87%8F%E6%A8%A1%E5%BC%8F1.png")
+![](./mdImg/內减模式1.png)
 - 观察得出： 內减模式的特点
     - 元素真实的宽度就是css中设置的宽度
     - 当css中的width定好了之后，动态的改变border或者padding，只有内容的宽度见减少
@@ -55,4 +55,4 @@ H5第一天
 - 应用场景
     - 常用在样式的初始化中，避免一个像素之差导致的布局换行
 
-![]("https://github.com/Lakers-twenty-four/h5c3/blob/master/mdImg/%E5%85%A7%E5%87%8F%E6%A8%A1%E5%BC%8F3.png")
+![](./mdImg/內减模式3.png)
