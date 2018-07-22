@@ -44,7 +44,7 @@ H5第一天
     - 传统模式 宽度计算 ： 盒子的宽度 = css中设置的 width + border +padding
     - 內减模式 宽度计算 ： 盒子的宽度  = css中设置的宽度 width 属性值为 boder-box
 
-![]("https://github.com/Lakers-twenty-four/h5c3/blob/master/mdImg/%E5%85%A7%E5%87%8F%E6%A8%A1%E5%BC%8F2.png")
+![](./mdImg/內减模式2.png)
 
 > ### 內减模式 ###
 ![]("https://github.com/Lakers-twenty-four/h5c3/blob/master/mdImg/%E5%85%A7%E5%87%8F%E6%A8%A1%E5%BC%8F1.png")
