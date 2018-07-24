@@ -112,7 +112,7 @@ div {
 
 &emsp;&emsp;设置产生过渡时的延迟时间 如   transition-delay: 10s;
 
-### 复合写法 ###
+### 2.1 复合写法 ###
 
 &emsp;&emsp;可以使用复合写法
 
@@ -121,7 +121,7 @@ div {
 transition: width 3s linear 0s;
 ```
 
-### 多个过渡写法 ###
+### 2.2 多个过渡写法 ###
 
 &emsp;&emsp; 可以同时对一个元素的多个元素添加过渡 对宽度和高度设置不同的过渡
 
@@ -131,7 +131,7 @@ transition:
     height 10s ease-in-out 2s;
 ```
 
-### 过渡结束事件 ###
+### 2.3 过渡结束事件 ###
 
 &emsp;&emsp; 元素在执行过渡结束之后，会自动触发的事件 **transitionend**
 
@@ -148,7 +148,7 @@ div.addEventListener("transitionend", function () {
 
 ![](./mdImg/2d1.png)
 
-### 2d移动 **translate** ###
+### 3.1 2d移动 **translate** ###
 
 2d移动是2d转换里面的一种功能，可以改变元素在页面中的位置，类似 定位
 
@@ -166,7 +166,7 @@ div{
 
 ![](./mdImg/2d2.png)
 
-### 小结 ###
+### 3.2 小结 ###
 1. **translate** 中的百分比单位是相对于自身元素的 `translate:(50%,50%);`
 2. **translate** 类似定位，不会影响到其它元素的位置
 3. 对行内标签没有效果
@@ -194,7 +194,7 @@ div{
 1.角度为正时 顺时针 负时 为逆时针
 2.默认旋转的中心点是元素的中心点
 
-### 转换中心 transform-origin 了解 ###
+### 4.1 转换中心 transform-origin 了解 ###
 
 该属性可以修改元素旋转时候的中心点
 
@@ -237,7 +237,7 @@ div{
     - 正在等待图标的制作
     - 自己实现animate.css
 
-## 1--3d转换(变化) ##
+## 1   3d转换(变化) ##
 
 3d转换时改变标签在3坐标系上的位置和形状的一种技术，以下知识点最好结合 [3d模型工具来理解](./3d演示工具.html)
 
@@ -314,7 +314,7 @@ div {
 
 ![](./mdImg/3d1.png)
 
-#### 1.1.1 例子 #####
+#### 1.1 例子 #####
 
 我现在想让元素沿着 x轴正方向旋转90度
 
@@ -325,24 +325,24 @@ transform: rotateX(90deg);
 ![](./mdImg/3d2.gif)
 可以通过自己的代码测试 让物体沿着y轴 z轴旋转，加深了解。
 
-####1.1.2  语法####
+####1.2  语法####
 
 - `transform:rotateX(45deg);` 沿着x轴正方向旋转 45度
 - `transform:rotateY(45deg)` 沿着y轴正方向旋转 45deg
 - `transform:rotateZ(45deg)` 沿着Z轴正方向旋转 45deg
 - `transform:rotate3d(x,y,z,deg)` 沿着自定义轴旋转 deg为角度  了解即可
 
-### 1.1  3D缩放scale3d了解 ###
+## 2  3D缩放scale3d了解 ##
 
 3d缩放 可以控制元素 在 x轴，y轴，z轴上的缩放，也可以理解为 宽，高，厚度的缩放。 结合3d模型工具学习
 
-#### 语法 ####
+#### 2.1 语法 ####
 - `transform: scale3d(1 ,1,2);`  宽，高 缩放一倍，厚度放大两倍
 - `transform: scaleX(1)` 只缩放宽
 - `transform: scaleY(1)` 只缩放高
   -` transform: scaleZ(1)` 只缩放厚  
 
-### 1.2  视距原点 perspective-origin 了解 ###
+## 3  视距原点 perspective-origin 了解 ##
 
 回顾视距知识点，
 
@@ -356,18 +356,18 @@ transform: rotateX(90deg);
 - perspective-origin:10px；  指定了一个参数的时候，第二个参数默认为center 也就是50%；
 - perspective-origin:10% 10%； 百分比都是相对于自身的宽度和高度
 
-### 1.3  transform-style 了解 ###
+## 4  transform-style 了解 ##
 结合3d立方体案例理解，控制子元素是否开启3维立体环境
 
 - `transform-style: flat; ` 平面模式  -  不开启3维立体环境
 - `transform-style: preserve-3d;`  3维立体环境
 
-### 1.4  3D转换总结 ###
+## 5  3D转换总结 ##
 
 - 百分比单位都是相对于自身
 - 视距、视距原点、转换样式 这三个属性都是给**父元素**添加的
 
-## 2 动画 animation ##
+## 6 动画 animation ##
 
 初学者容易对**动画**和**过渡**傻傻分不清楚
 
@@ -375,7 +375,7 @@ transform: rotateX(90deg);
 
 **动画**可以设置变化的次数 **甚至是无数次**   
 
-> ### 步骤 ###
+### 6.1 步骤 ###
 
 1.在css中定义动画函数  
 
@@ -413,7 +413,7 @@ div {
 }
 ```
 
-> ## 语法 ##
+### 6.2 语法 ###
 > 1.动画名
 > 设置要使用的动画名 `animation-name:xxx;`
 > 》
@@ -461,11 +461,11 @@ div {
 
 `animation-play-state`控制 **播放** 还是 **暂停** `running` 播放  `paused` 暂停
 
-> ### 复合写法 ###
+### 6.3 复合写法 ###
 
 `animation: name duration timing-function delay iteration-count direction fill-mode;`
 
-> ### 多个动画写法 ###
+### 6.4 多个动画写法 ###
 
 ```css
 animation:
@@ -473,7 +473,7 @@ name duration timing-function delay iteration-count direction fill-mode，
 animation: name duration timing-function delay iteration-count direction fill-mode;
 ```
 
-> ### 动画结束事件 **animationend** 
+### 6.5 动画结束事件 **animationend** 
 
 元素在动画结束之后，会自动触发的事件 **animationend**
 
@@ -484,7 +484,7 @@ div.addEventListener("animationend", function () {
 })
 ```
 
-## 3  动画库 **animate.css**
+## 7  动画库 **animate.css**
 
 封装了常见的有意思的小动画 **发疯似的建议看官网来学习使用**
 
@@ -492,7 +492,7 @@ div.addEventListener("animationend", function () {
 
 [中文](https://www.awesomes.cn/repo/daneden/animate-css)
 
-> ### 使用步骤 ###
+### 7.1 使用步骤 ###
 
 1.引入css文件
 
@@ -532,7 +532,7 @@ div.addEventListener("animationend", function () {
 
 因为有些常用 有些不常用。所以我们就只学习常用的即可
 
-> ## E:first-child ##
+### 2.1 E:first-child ###
 
 匹配父元素的第一个子元素E。
 
@@ -554,7 +554,7 @@ div.addEventListener("animationend", function () {
 
 **E:last-child** 则是选择到了最后一个li标签
 
-> ## E:nth-child(n)    E:nth-last-child(n) ##
+### 2.2 E:nth-child(n)    E:nth-last-child(n) ###
 
  匹配到父元素的第n个元素 或者 是倒数第n个元素
 
@@ -587,7 +587,7 @@ div.addEventListener("animationend", function () {
 
 `ul li:nth-last-child(-n+3){}`
 
->  ## E:nth-of-type(n) ##
+### 2.3 E:nth-of-type(n) ###
 
 这里只讲明 **E:nth-child(n)** 和 **E:nth-of-type(n)** 的区别**剩下的 **E:first-of-type** **E:last-of-type**  **E:nth-last-of-type(n)**   同理做推导即可
 
@@ -628,7 +628,7 @@ github 官网 <https://github.com/alvarotrigo/fullPage.js>
 
 中文演示地址 <http://www.dowebok.com/demo/2014/77/>
 
-> ## 引用文件 ##
+### 3.1 引用文件 ###
 
 ```html
 <link rel="stylesheet" href="css/jquery.fullPage.css">
@@ -636,7 +636,8 @@ github 官网 <https://github.com/alvarotrigo/fullPage.js>
 <script src="js/jquery.fullPage.js"></script>
 ```
 
-> ## HTML 结构 ##
+### 3.2 HTML 结构 ###
+
 ```html
 <div id="fullpage">
     <div class="section">第一屏</div>
@@ -651,7 +652,8 @@ github 官网 <https://github.com/alvarotrigo/fullPage.js>
 </div>
 ```
 
-> ## **JavaScript** ##
+### 3.3 **JavaScript** ###
+
 ```js
 $(function(){
     $('#fullpage').fullpage();
@@ -666,7 +668,7 @@ $(function(){
 
 [](https://www.sass.hk/)
 
-> ## 有哪些css预处理器 ##
+### 4.1 有哪些css预处理器 ###
 
 - less
 - sass
@@ -675,14 +677,16 @@ $(function(){
 > ## sass的文件后缀名是scss! ##
 > sass是技术的名称  scss是sass文件的后缀名
 
-> ## sass的执行过程 ##
+### 4.2	sass的执行过程 ###
+
 - 编写符合sass语法的scss文件
 - 使用工具将scss文件编译成css文件
 - 页面中引用编译好的css文件
 
 ## 5  sass语法 ##
 
-> ## 变量 ## 
+### 5.1 变量 ### 
+
 ```css
 // 声明变量 $变量名:值;
 $color:red;
@@ -693,7 +697,7 @@ body{
 }
 ```
 
-> ## 混合-函数 ##
+### 5.2 混合-函数 ###
 
 ```css
 // 声明函数 .函数名(@参数名)
@@ -707,7 +711,7 @@ body{
 }
 ```
 
-> ## 嵌套--注意层级问题 ##
+### 5.3 嵌套--注意层级问题 ###
 
 ```css
 #id{
@@ -722,7 +726,7 @@ body{
 }
 ```
 
-> ## 导入 ##
+### 5.4 导入 ###
 
 a.scss
 
@@ -745,13 +749,15 @@ body {
 }
 ```
 
-> ## 注释 ##
+### 5.5 注释 ###
+
 ```css
 // 不会被编译
 /* 会被编译 */
 ```
 
-> ## sass工具 ##
+### 5.6 sass工具 ###
+
 - [考拉编译工具 考拉官方网站](http://koala-app.com/index-zh.html)
 
 - vs code 插件 "**Live Sass Compiler**"  在插件搜索列表中安装即可,插件安装后,重启 vs code 点击
@@ -843,3 +849,295 @@ body {
 ![](./mdImg/flex3.png)
 
 如上面的案例：子项默认就是从左到右排列的。
+
+- **flex-direction:row;** row 就是默认值，从左到右
+
+![](./mdImg/flex4.png)
+
+- **flex-direction:row-reverse;**从右到左
+
+![](./mdImg/flex5.png)
+
+- **flex-direction:column;**从上到下
+
+![](./mdImg/flex6.png)
+
+- **flex-direction:column-reverse;**从下到上
+
+![](./mdImg/flex7.png)
+
+### 4.2 justify-content 设置主轴上的子元素排列方式
+
+直接上图
+
+- `justufgy-content:flex-start` 默认值
+- `justify-content:flex-end;`从尾部开始排列，要注意与 `flex-direction-reverse;`的区别
+
+![](./mdImg/flex8.png)
+
+- `justify-content:center;`挤在一起居中
+
+![](./mdImg/flex9.png)
+
+- `justify-content:space-around;`平分剩余空间
+
+![](./mdImg/flex10.png)
+
+- `justify-content:space-between;`先两边再平分剩余空间
+
+![](./mdImg/flex11.png)
+
+### 4.3 flex-wrap设置子元素是否换行
+
+flex布局默认是不换行的，把span标签的个数变成100个试试
+
+默认
+
+> flex-wrap:no-wrap;
+
+![](./mdImg/flex12.png)
+
+想要换行，只能手动指定
+
+> flex-wrap:wrap;
+
+![](./mdImg/flex13.png)
+
+### 4.4 align-content 设置侧轴上的子元素的排列方式(多行)
+
+设置子项在侧轴上的排列方式，并且只能用于子项出现换行的情况， **在单行下是没有效果的！**
+
+- align-content:flex-start;在侧轴的头部开始排列
+
+![](./mdImg/flex14.png)
+
+- align-content-end;在侧轴的尾部开始排列
+
+![](./mdImg/flex15.png)
+
+- align-content:flex-center;在侧轴中间显示
+
+![](./mdImg/flex16.png)
+
+- align-content-around;子项在侧轴平分剩余空间
+
+![](./mdImg/flex17.png)
+
+- align-content:space-between;子项在侧轴，先分布在两头，再平分剩余空间
+
+![](./mdImg/flex18.png)
+
+- align-content:stretch;设置子项元素高度平分父元素高度(当子项设了高度的时候--无效)
+
+  在css中先把子项高度去掉
+
+  ```css
+   /* 为了让 父项的align-content:stretch;有效 注释 子项的高度 */
+   /* height: 100px; */
+  ```
+
+  在父项中加入
+
+  ```css
+  /* 子项高度平分父元素的高度*/
+  align-content:stretch;
+  ```
+
+  ![](./mdImg/flex19.png)
+
+- align-content:normal;默认值
+
+### 4.5 align-items 设置侧轴上的子元素排列方式(单行)
+
+该属性是控制子项在侧轴(默认是y轴)上的排列方式，在子项为单项的时候使用
+
+它的参数意思可以参照之前的解释
+
+- align-items:flex-start;
+- align-items:flex-end;
+- align-items:center;
+- align-items:stretch;
+
+### 4.6 align-content和align-items的区别
+
+1. align-items可以用于单行和多行，但是设置多行的参数没有align-content多
+2. align-content只能用于多行，不能用于单行
+3. 为了方便记忆，可以记为字母数少的设置单行，字母多的设置多行
+
+## 5 子项
+
+### 5.1 align-self控制子项自己在侧轴上的排列方式
+
+**align-self的优先级比align-items,align-content高**
+
+1. - 在父项上设置:侧轴子项排列方式居中 `align-items:center;`
+2. 在第二个子项上，设置自己在侧轴上的排列方式`align-self:flex-end;`
+
+```css
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    div {
+      width: 600px;
+      height: 600px;
+      margin: 10px auto;
+      background-color: aqua;
+      display: flex;
+      /*父元素 设置侧轴子项排列方式 居中 */
+      align-items: center;
+    }
+    span {
+      background-color: pink;
+      border: 1px solid #000;
+      width: 100px;
+      height: 100px;
+    }
+    span:nth-child(2) {
+      /* 设置自己在侧轴上的排列方式 */
+      align-self: flex-end;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+  </div>
+</body>
+```
+
+![](./mdImg/flex20.png)
+
+其它参数的设置如下
+
+1. 参数基本和align-items一样
+2. flex-start
+3. flex-end
+4. center
+5. stretch
+
+### 5.2 order 设置子项之间的排列顺序
+
+默认值都是0，谁的order值越小，谁就越靠前
+
+![](./mdImg/order1.png)
+
+### 5.3 flex 设置子项宽度占父元素宽度的比例
+
+**当子项指定了width时无效**
+
+例子一
+
+设置  **每一个子项父元素的宽度**
+
+```css
+ <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    div {
+      width: 600px;
+      height: 600px;
+      margin: 10px auto;
+      background-color: aqua;
+      display: flex;
+    }
+    span {
+      background-color: pink;
+      border: 1px solid #000;
+      height: 100px;
+      /* 不要指定width属性 */
+      /* width: 100px; */
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+  </div>
+</body>
+```
+
+![](./mdImg/flex21.png)
+
+**计算方式**
+
+当设置子项的`flex:1;`时，假设有n个子项，每一个子项各占父元素的 **1/n**
+
+> 子项的宽度 = 父元素宽度 *（ 子项的flex / 总的flex数 ） 
+>
+> = >
+>
+> 子项的宽度=父元素宽度 *（1 / n） 
+
+
+
+例子二
+
+假设一共有三个子项，第一个子项设置`flex:2`其他都为`flex:1`第一个子项的宽度应该是其他子项的两倍
+
+```css
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    div {
+      width: 600px;
+      height: 600px;
+      margin: 10px auto;
+      background-color: aqua;
+      display: flex;
+    }
+    span {
+      background-color: pink;
+      border: 1px solid #000;
+      height: 100px;
+      /* 不要指定width属性 */
+      /* width: 100px; */
+      flex: 1;
+    }
+    span:nth-child(1){
+      flex: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+  </div>
+</body>
+```
+
+![](./mdImg/flex22.png)
+
+### 5.4 其他
+
+1. flex-grow 了解即可，可以自行查 css.chm文档
+2. flex-shrink 了解即可 了解即可  可以自行查 css.chm 文档
+3. flex-basis 了解即可 了解即可  可以自行查 css.chm 文档
+
+## 6 弹性布局小结
+
+- 子项可以直接设置宽度和高度
+
+- 子项不受浮动影响，但是受定位影响
+
+- 在移动端布局时，传统布局和弹性布局，哪种方便就使用哪种。
+
+  ​
