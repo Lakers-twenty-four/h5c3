@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        ul {
+            width: 410px;
+            margin: 100px auto;
+        }
+        li {
+            width: 40px;
+            height: 40px;
+            float: left;
+            list-style: none;
+            border : 1px solid #0094FF;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: background-color 1s linear,
+                        color 1s linear,
+                        transform 1s linear;
+        }
+        li:last-child {
+            margin-right: 0px;
+        }
+        li:hover {
+            background-color: #0094FF;
+            color:#fff;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* 函数和混用 */
+/* 声明函数 */
+/* 调用 */
+body {
+  border: 1px solid #000;
+  background-color: #0094FF;
+}
+
+/* 声明 带参数的函数 */
+/* 调用 */
+body {
+  color: red;
+}
+
+/* 声明 带默认参数的函数 */
+/* 如果调用的时候 传参 就用默认传进来的参数 */
+/* 没有传参 就使用默认的参数 black */
+/* 调用 */
+body {
+  /* 不传参数 */
+  background-color: #0094FF;
+  /* 传参数 */
+  background-color: white;
+}
+/*# sourceMappingURL=函数的使用.css.map */

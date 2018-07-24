@@ -1,0 +1,35 @@
+/* 函数和混用 */
+
+/* 声明函数 */
+@mixin changeColor () {
+    border : 1px solid #000;
+    background-color: #0094FF;
+}
+
+/* 调用 */
+body {
+    @include changeColor();
+}
+
+/* 声明 带参数的函数 */
+@mixin changeColor2 ($c) {
+    color:$c;
+}
+/* 调用 */
+body {
+    @include changeColor2(red);
+}
+
+/* 声明 带默认参数的函数 */
+/* 如果调用的时候 传参 就用默认传进来的参数 */
+/* 没有传参 就使用默认的参数 black */
+@mixin changeColor3 ($c:#0094FF) {
+    background-color: $c;
+}
+/* 调用 */
+body {
+    /* 不传参数 */
+    @include changeColor3();
+    /* 传参数 */
+    @include changeColor3(white);
+}

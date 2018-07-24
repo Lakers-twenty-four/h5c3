@@ -1,0 +1,215 @@
+@charset "UTF-8";
+body,
+div,
+span {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: url("../images/bg.jpg") no-repeat;
+}
+
+.bgBox {
+  position: relative;
+  -webkit-transition: -webkit-transform 2s linear;
+  transition: -webkit-transform 2s linear;
+  transition: transform 2s linear;
+  transition: transform 2s linear, -webkit-transform 2s linear;
+}
+
+.bgBox span {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#fff), color-stop(25%, pink), color-stop(50%, hotpink), color-stop(75%, yellow), to(orange));
+  background-image: linear-gradient(to top right, #fff 0%, pink 25%, hotpink 50%, yellow 75%, orange 100%);
+  -webkit-animation: ball_animate 20s infinite linear alternate;
+          animation: ball_animate 20s infinite linear alternate;
+}
+
+.bgBox span:nth-child(1) {
+  top: 100px;
+  left: 400px;
+  width: 120px;
+  height: 120px;
+}
+
+.bgBox span:nth-child(2) {
+  top: 100px;
+  left: 464px;
+  width: 120px;
+  height: 120px;
+}
+
+.bgBox span:nth-child(3) {
+  top: 450px;
+  left: 900px;
+  width: 300px;
+  height: 300px;
+}
+
+.bgBox span:nth-child(4) {
+  top: 40px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.bgBox span:nth-child(5) {
+  top: 320px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
+}
+
+.bgBox span:nth-child(6) {
+  top: 20px;
+  right: 20px;
+  width: 82px;
+  height: 82px;
+}
+
+.otherSec {
+  -webkit-transform: rotateZ(20deg);
+          transform: rotateZ(20deg);
+}
+
+@-webkit-keyframes ball_animate {
+  from {
+    -webkit-transform: translateX(0) rotateZ(0deg);
+            transform: translateX(0) rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: translateX(-999px) rotateZ(360deg);
+            transform: translateX(-999px) rotateZ(360deg);
+  }
+}
+
+@keyframes ball_animate {
+  from {
+    -webkit-transform: translateX(0) rotateZ(0deg);
+            transform: translateX(0) rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: translateX(-999px) rotateZ(360deg);
+            transform: translateX(-999px) rotateZ(360deg);
+  }
+}
+
+.section1 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 第一屏部分代码开始 */
+.section1 {
+  position: relative;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.section1 .skinBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+}
+
+.section1 .skinBox img:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.section1 .s1_begin_status {
+  -webkit-transform: translate3d(-50%, -50%, 500px) rotateY(180deg);
+          transform: translate3d(-50%, -50%, 500px) rotateY(180deg);
+}
+
+/* 第一屏部分代码结束 */
+/* 第二屏部分代码开始 */
+.section2 {
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.sec2TitleBox {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 316px;
+  -webkit-transition: -webkit-transform .5s linear;
+  transition: -webkit-transform .5s linear;
+  transition: transform .5s linear;
+  transition: transform .5s linear, -webkit-transform .5s linear;
+}
+
+.sec2TitleBox_begin_status {
+  -webkit-transform: translate3d(-50%, -50%, -3000px);
+          transform: translate3d(-50%, -50%, -3000px);
+}
+
+.sec2TitleBox_end_status {
+  -webkit-transform: translate3d(-50%, -50%, 1000px);
+          transform: translate3d(-50%, -50%, 1000px);
+}
+
+/* 第二屏部分代码结束 */
+/* 第三屏部分代码开始 */
+.section3 {
+  position: relative;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  overflow: hidden;
+}
+
+.section3 .browserBox {
+  position: absolute;
+  bottom: 0px;
+  right: -130px;
+  width: 1280px;
+  height: 625px;
+  border: 1px solid #000;
+  background-color: #fff;
+  -webkit-transform: rotateX(30deg);
+          transform: rotateX(30deg);
+  -webkit-transition: bottom 1s linear,right 1s linear;
+  transition: bottom 1s linear,right 1s linear;
+}
+
+.section3 .title {
+  position: absolute;
+  bottom: 400px;
+  left: 80px;
+  z-index: 20;
+  -webkit-transform: rotateX(30deg);
+          transform: rotateX(30deg);
+  -webkit-transition: bottom 1s linear,left 1s linear;
+  transition: bottom 1s linear,left 1s linear;
+}
+
+.section3 .title_begin_status {
+  bottom: 0px;
+  left: 0px;
+}
+
+.section3 .browserBox_begin_status {
+  bottom: -562px;
+  right: -820px;
+}
+
+/* 第三屏部分代码结束 */
+/* 第一屏部分代码开始 */
+/* 第一屏部分代码结束 */
+/*# sourceMappingURL=index.css.map */

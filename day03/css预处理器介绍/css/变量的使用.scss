@@ -1,0 +1,9 @@
+// sass 语法是兼容css语法的
+
+// 声明变量
+$color : #0094FF;
+
+//调用
+body {
+    background-color: $color;
+}

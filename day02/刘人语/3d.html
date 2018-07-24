@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("./img/bg.jpg");
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        div {
+            width: 240px;
+            height: 240px;
+            border-radius: 15px;
+        }
+        .box {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            margin: 200px auto;
+            transform-style: preserve-3d;
+            transform: rotate3d(1,1,1,20deg);
+        }
+        .box>div {
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        .font {
+            transform: translateZ(120px);
+            background-image: url("./img/1.jpg")
+        }
+        .back {
+            transform: translateZ(-120px);
+            background-image: url("./img/6.jpg")
+        }
+        .right {
+            transform: translateX(120px) rotateY(90deg);
+            background-image: url("./img/2.jpg");
+        }
+        .left {
+            transform: translateX(-120px) rotateY(-90deg);
+            background-image: url("./img/3.jpg");
+        }
+        .behind {
+            transform: translateY(120px) rotateX(-90deg);
+            background-image: url("./img/4.jpg");
+        }
+        .top {
+            transform: translateY(-120px) rotateX(90deg);
+            background-image: url("./img/5.jpg");
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        
+        <div class="back"></div>
+        <div class="right"></div>
+        <div class="left"></div>
+        <div class="top"></div>
+        <div class="behind"></div>
+        <div class="font"></div>
+    </div>
+    <script>
+        var flag = 0;
+        setInterval(function(){
+            flag+=20;
+            var box = document.getElementById("box");
+            box.style.transform = "rotate3d(1,1,1,"+flag+"deg)";
+        },240);
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAMA,AAAA,IAAI,CAAC;EACD,gBAAgB,EAJX,OAAO;CAKf",
+    "sources": [
+        "变量的使用.scss"
+    ],
+    "names": [],
+    "file": "变量的使用.css"
+}
