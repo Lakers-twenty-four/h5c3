@@ -1145,10 +1145,463 @@ flex布局默认是不换行的，把span标签的个数变成100个试试
   ​
 
 
+# h5  第5天
+
+## 1  学习目标
+
+- 理解
+  - 阴影
+  - 颜色
+  - 伪类选择器
+  - 属性选择器
+  - 背景
+  - 字体
+  - h5语义化标签
+  - h5表单标签 属性和事件
+- 引用
+  - 凹凸字体
+  - 增大背景图片的响应区域
+  - h5完整表单
+
+## 2  阴影
+
+在 css3 中，阴影分为两种，一种是盒子阴影，一种是文字阴影
+
+### 2.1  盒子阴影  **box-shadow**
+
+顾名思义，就是为一个盒子添加阴影效果，如：
+
+```css
+li {
+  float: left;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  list-style: none;
+  background: url("./img/timg.jpg");
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 20px;
+ }
+
+li:hover {
+  /* 盒子阴影 水平偏移 垂直偏移 模糊值 阴影外延值 内外阴影？ */
+  box-shadow: 1px 1px 12px 1px;
+}
+```
+
+![](./mdImg/box-shadow.png)
+
+#### 2.1.1  语法1
+
+box-shadow: 水平偏移，垂直偏移，模糊值，外延值，颜色，内外阴影
+
+1. **水平偏移**--单位px或者%
+2. **垂直偏移**--单位px或者%
+3. **模糊值**--控制阴影的模糊程度，值越大越模糊，单位px
+4. **外延值**--控制阴影向外延伸的值，单位px
+5. **内外阴影**--可以省略，省略值为inset（内阴影）   outset（外阴影）
+
+#### 2.1.2  语法2
+
+可以对一个盒子添加多个阴影，如
+
+```css
+/* 盒子阴影 水平偏移 垂直偏移 模糊值 阴影外延值 内外阴影？ */
+box-shadow: 50px 50px 25px 3px red,
+		   -50px -50px 25px 3px yellow;
+```
+
+### 2.2  文本阴影 **text-shadow**
+
+为文本添加阴影效果，如
+
+```css
+p:nth-child(1) {
+  /* 文字阴影 水平偏移 垂直偏移 模糊值 颜色 */
+  text-shadow: -1px -1px 1px #000,1px 1px 1px #fff;
+}
+p:nth-child(2) {
+  /* 文字阴影 水平偏移 垂直偏移 模糊值 颜色 */
+  text-shadow: -1px -1px 1px #fff,1px 1px 1px #000;
+}
+```
+
+![](./mdImg/text-shadow.png)
+
+2.2.1  语法
+
+文本阴影的属性值比盒子阴影的要少两个，少了 **外延值**和 **内外阴影**其他都一样
+
+**text-shadow: 水平偏移 垂直偏移 模糊值  颜色**
+
+## 3  颜色(rgba)
+
+关于颜色的设置，有以下几种，我们主要学习 **RGBA** 其他只需要了解即可
+
+ **RGBA** 比  **RGB** 多了一个透明度，那么 **RGBA** 的效果和 **RGB** + **opacity** 的效果一样吗？
+
+答案： **不一样**
+
+- RGBA  中的透明度 只是背景透明 而内容不透明
+- 而 opacity  会 把元素的所有都变成透明 
+
+## 4  背景
+
+背景 **background**一共拥有8个属性
+
+![](./mdImg/background-pro.png)
+
+先从最简单的开始  学习&复习
+
+1. `background-color:`指定背景颜色
+2. `background-image:`  指定要使用的背景图片 或者  **渐变**
+3. `background-repeat:`  设置背景图片的平铺方式 
+4. `background-attachment:` 设置背景图像是随对象内容滚动还是固定的  默认是滚动
+5. `background-position:` 设置背景图片的偏移值 
+
+那么 还剩下三个需要我们重点讲解的   **size** 、**origin**  和 **clicp**
+
+### 4.1 background-size
+
+设置背景图片的大小，有两种设置方法，一种是自定义，如`background-size:100px 100px`
+
+**另外一种就是系统提供的值（重点学习）**
+
+- cover 等比放大到容器大小，直到最短边触底
+- contain 等比放大到容器大小，直到最长边触底
+
+![](./mdImg/background1 .png)
+
+```css
+<style>
+    * 公共样式 */
+    div { width: 200px; height: 200px; display: inline-block; margin: 10px; border: 1px solid #000; background-image: url("./1.png"); background-repeat: no-repeat; }
+
+    div:nth-child(1) {
+      /* 默认值 相当于不设置 */
+      background-size: auto;
+    }
+
+    div:nth-child(2) {
+      /* 等比放大到容器大小，直到最短边触底 */
+      background-size: cover;
+    }
+
+    div:nth-child(3) {
+      /* 等比放大到容器大小，直到最长边触底 */
+      background-size: contain;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+</body>
+```
+
+### 4.2  background-origin
+
+设置背景图片从哪里开始显示，我们把一个元素分为三个部分 **border**、**padding**、**content-width** 这个属性就是用来设置背景图片，三个部分开始显示的
+
+![](./mdImg/background2.png)
+
+```css
+<style>
+    /* 公共样式 */
+    div { width: 200px; height: 200px; display: inline-block; box-sizing: border-box; margin: 10px; background-image: url("./1.png"); background-repeat: no-repeat; background-color: red; border: 10px dashed #000; padding: 30px; }
+
+    div:nth-child(1) {
+      /* 从padding部分开始显示 */
+      background-origin: padding-box;
+    }
+
+    div:nth-child(2) {
+      /*从边框部分开始显示 */
+      background-origin: border-box;
+    }
+
+    div:nth-child(3) {
+      /* 从内容部分开始显示 */
+      background-origin: content-box;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+</body>
+```
+
+### 4.3  background-clip
+
+背景裁剪，一个元素分为三个部分**border**、**padding**、**content-width**
+
+该属性控制背景**从哪个部分开始向外裁剪**
+
+![](./mdImg/background3.png)
+
+```css
+<style>
+    /* 公共样式 */
+    div { width: 200px; height: 200px; display: inline-block; box-sizing: border-box; margin: 10px; background-image: url("./1.png"); background-repeat: no-repeat; background-color: red; border: 10px dashed #000; padding: 30px; background-origin: content-box; }
+
+    div:nth-child(1) {
+      /* 从边框部分开始显示  默认值  */
+      background-clip: border-box;
+    }
+
+    div:nth-child(2) {
+      /* padding-box 从padding部分开始显示  */
+      background-clip: padding-box;
+    }
+
+    div:nth-child(3) {
+      /* content-box 从内容部分开始显示 */
+      background-clip: content-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+</body>	
+```
+
+## 5  字体
+
+我们先了解两个概念**位图**和**矢量图**
+
+1. 位图：就是我们平常所了解的图片，如*.jpg *.png    **位图放大会变模糊**
+2. 矢量图 字体可以理解是矢量图 当字体放大时，程序会自动重新渲染一次字体，所以放大 不会变模糊 
+
+### 5.1  web字体
+
+在网页中，有时候我们需要在网页中引用设计师自己设计的字体。
+
+### 5.2  字体图标
+
+字体图标的使用方式和**web字体**类似  
+
+使用第三方字体图标实现效果
+
+1. [font-awesome](http://fontawesome.dashgame.com/) 
+2. [阿里巴巴](http://www.iconfont.cn/)
+
+## 6  伪元素选择器了解
+
+### 6.1  伪元素种类
+
+1. E::before   在E元素前插入一个元素
+2. E::after  在E元素后插入一个元素
+3. E::first-letter 选择到了E容器内的第一个字母  
+4. E::first-line 选择到了E容器内的第一行文本
+
+### 6.2  h5写法和传统写法区别了解
+
+1. 单冒号`E:before`
+2. 双冒号`::before`
+
+**结论**： 浏览器对以上写法都能识别 **双冒号** 是h5上语法的规范
+
+## 7  属性选择符  了解
+
+1. E[attr]选择具有attr属性的E元素。
+2. E[att="val"] 选择具有att属性且属性值等于val的E元素。
+3. E[att^="val"] 选择具有att属性且属性值为以val开头的字符串的E元素。
+4. E[att$="val"] 选择具有att属性且属性值为包含val的字符串的E元素
+5. E[att*="val"] 选择具有att属性且属性值为包含val的字符串的E元素。
+
+```html
+<!-- 
+    标签
+    类名
+    id
+    *
+    子代
+    后代
+    属性选择符
+      [class] 选择到了 具有class属性的标签 
+      [class="red"] 选择到了 具有class属性并且 值 = red
+      [class^="red"] 选择到了 具有class属性并且 值 是以 red开头的
+                              开发样式框的人使用
+                               [class^=btn]{
+
+                               }
+                                .btn-lg .btn-md 
+      [class$="red"]  选择到了具有class属性 并且值以 red 结尾!!!                         
+      [class*="red"]    选择到了具有class属性  并且值里面包含有 red 
+   -->
+  <!-- <div class> [class]</div> -->
+  <!-- <div class="red"> [class="red"]</div> -->
+  <!-- <div class="red-btn"> red-btn</div> -->
+  <!-- <div class="red-div"> red-div</div> -->
+  <!-- <div class="div-red"> div-red</div> -->
+  <div class="div-red-div"> div-red-div</div>
+```
+
+```css
+  <style>
+    /* [class]{
+      background-color: red;
+      width: 200px;
+      height: 20px;
+    } */
+
+    [class="red"] {
+      background-color: red;
+      width: 200px;
+      height: 20px;
+    }
+
+    [class^="red"] {
+      background-color: aqua;
+      width: 200px;
+      height: 20px;
+    }
+
+    [class$="red"] {
+      background-color: yellow;
+      width: 200px;
+      height: 20px;
+    }
+
+    [class*="red"] {
+      background-color: green;
+      width: 200px;
+      height: 20px;
+    }
+  </style>
+```
+
+## 8  语义化标签  了解
+
+使用语义化标签的好处是增强了代码的可阅读性，也方便了网站的seo。
+
+- header  头部标签
+- nav 导航标签
+- article 内容标签
+- section 块级标签
+- aside 侧边栏标签
+- footer 尾部标签
+
+![](./mdImg/语义化标签.png)
+
+## 9  h5的dom API扩展
+
+### 9.1  h5新增两种获取dom的方式
+
+1. 获取单个dom元素`document.querySelector("div")`
+2. 获取dom数组`document.querySelectorAll("div")`
+
+### 9.2  四种操作class的方式
+
+1. dom.classList.add('className') **添加**
+2. dom.classList.remove('className') **移除**
+3. dom.classList.toggle('className') **切换**
+4. dom.classList.contains('className') **判断**
+
+### 9.3  h5自定义属性
+
+h5推荐在便签中定义属性 data-***  `<div data-color='red'></div>`  
 
 
 
-<a href="#h5第一天"></a>
+当按照以上方式定义属性时，在JS中，我们可以这样来获取自定义属性的值，如
 
+**1 定义属性 data-\***
 
+```html
+<div data-color='red'>div</div>
+```
 
+**2 获取属性值 dom.dataset-**
+
+```javascript
+var div=document.querySelector("div");
+// 获取h5自定义属性  dataset是一个对象 里面的是h5自定义属性
+var color=div.dataset.color; // red 
+```
+
+## 10  h5表单
+
+h5 表单分为三大部分来学习，**输入框**，**表单属性**和**表单事件**
+
+### 10.1 h5表单标签
+
+对于h5表单标签的学习，以下案例已经包含了所有的新知识，我们只需要做个选择题即可，看着案例来学习新标签即可。
+
+![](./mdImg/h5表单1.png)
+
+#### 10.1.1  常见输入类型
+
+```
+text password radio checkbox button file hidden submit reset image
+```
+
+#### 10.1.2  新的输入类型
+
+- email 邮箱
+- url 网址
+- search 搜索
+- tel 电话 
+- 日期等
+  - date
+  - time
+  - datetime
+  - datetime-local
+  - month
+  - week
+- number 数字输入框
+  - min 最小值
+  - max 最大值
+  - step 步数
+- range 范围
+  - min 最小值
+  - max 最大值
+  - step 步长
+- color 颜色
+  - 标签的 value 属性中写颜色值只能写这格式 `#000000`
+- datalist 可输入表单
+
+![](./mdImg/表单-color.png)
+
+### 10.2  h5表单属性
+
+- placeholder:占位符-提示信息
+- autofocus:自动获得焦点-一般页面中放1个
+- autocomplete 自动完成
+  - 当用户在字段开始键入时，浏览器基于之前键入过的值，应该显示出在字段中填写的选项。
+  - 默认已经打开 如 `autocomplete=on`  关闭 `autocomplete =off`
+  - 需要放在表单内同时加上name属性
+- multiple:可以多选文件提交
+  - 结合文件上传标签   `<input type="file" >`   一起使用
+- form属性，可以将输入标签放在表单的外面，还受到表单的管理 
+
+```html
+<!-- 指定了id为ff -->
+<form action="" id="ff" >
+  <input type="submit" value="提交">
+</form>
+<!-- 指定了属性form，值为表单的id=ff -->
+<input type="text" required form="ff"  >
+```
+
+- required:必填验证
+- novalidate:关闭验证
+  - 在表单上添加该属性，那么在提交的时候就不会再执行 required验证
+- pattern：自定义验证-通过编写正则表达式自定义验证规则 一般和required同时使用
+  - 表单事件
+
+### 10.3  h5表单事件
+
+- oninvalid  当元素表单验证失败时触发 
+  - 可以通过`this.setCustomValidity("自定义验证提示")` 代码自定义验证提示
+- oninput 当输入值的时候触发
+- oncontextmenu  鼠标右键事件

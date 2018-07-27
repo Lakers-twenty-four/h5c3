@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #808080;
+        }
+        p {
+            font-size: 100px;
+            color :#808080;
+        }
+        p:nth-child(1) {
+            /* 文字阴影 水平偏移 垂直偏移 模糊值 颜色 */
+            text-shadow: -1px -1px 1px #000,1px 1px 1px #fff;
+        }
+        p:nth-child(2) {
+            /* 文字阴影 水平偏移 垂直偏移 模糊值 颜色 */
+            text-shadow: -1px -1px 1px #fff,1px 1px 1px #000;
+        }
+    </style>
+</head>
+<body>
+    <p>这行文字是凹进去的</p>
+    <p>这行文字是凸出来的</p>
+</body>
+</html>
