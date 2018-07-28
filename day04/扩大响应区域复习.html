@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ul {
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+            margin: 0 auto;
+        } */
+
+
+        /* [class="red"] 选择到了 具有class属性并且 值 = red */
+        [class="ulBox"] {
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+            margin: 0 auto;
+        }
+        
+        /* [class^="red"] 选择到了 具有class属性并且 值 是以 red开头的 */
+        [class^="ul"] {
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+            margin: 0 auto;
+        }
+        
+        /* [class$="red"]  选择到了具有class属性 并且值以 red 结尾!!!*/
+        [class$="box"] {
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+            margin: 0 auto;
+        }
+        
+        /* [class*="red"]    选择到了具有class属性  并且值里面包含有 red  */
+        [class*="ul"] {
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+            margin: 100px auto;
+        }
+
+        li {
+            width: 200px;   
+            height: 200px;
+            background: url("./img/xc_sprites.png") 8px -156px no-repeat;
+            background-size: 175% ;
+            background-origin: content-box;
+            background-clip: content-box;
+            list-style: none;
+            padding: 62px;
+            transition: box-shadow 1s;
+        }
+
+        li:hover {
+            box-shadow: 1px 1px 12px 1px;
+        }
+        
+    </style>
+</head>
+<body>
+    <ul class="ulBox" >
+        <li>
+
+        </li>
+    </ul>
+</body>
+</html>

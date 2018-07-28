@@ -1374,6 +1374,8 @@ p:nth-child(2) {
 </body>	
 ```
 
+### 4.4  增大背景图片响应区域
+
 ## 5  字体
 
 我们先了解两个概念**位图**和**矢量图**
@@ -1395,6 +1397,20 @@ p:nth-child(2) {
 2. [阿里巴巴](http://www.iconfont.cn/)
 
 ## 6  伪元素选择器了解
+
+1. 有哪些特点
+
+- ：：冒号
+- 但标签不能加伪元素
+- content:""
+- 通过js或者jq拿不到伪元素
+- first-letter
+- first-line
+
+2.一般用在哪里
+
+- 字体图标
+- 清除浮动
 
 ### 6.1  伪元素种类
 
@@ -1605,3 +1621,159 @@ text password radio checkbox button file hidden submit reset image
   - 可以通过`this.setCustomValidity("自定义验证提示")` 代码自定义验证提示
 - oninput 当输入值的时候触发
 - oncontextmenu  鼠标右键事件
+
+# H5第6天
+
+## 1  学习目标
+
+- 理解
+
+  - 多媒体标签
+  - 本地存储
+  - 网络状态（了解）
+  - 全屏（了解）
+  - 文件读取api（了解）
+  - 拖拽（了解）
+  - 地理位置（了解）
+  - h5兼容处理
+  - css3浏览器前缀以及处理
+- 应用
+
+  - 自定义多媒体播放器
+  - 本地搜索历史
+
+
+
+
+## 2  h5 的兼容处理
+
+### 2.1  h5语义化标签兼容
+
+一些低版本的浏览器是不支持h5语义化标签的，如header标签`<header>ie8不识别</header>`,在ie8下将header标签识别为普通的行内元素，可将一下代码放在谷歌和ie8以下测试
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    header {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <header>大头大头下雨不愁</header>
+</body>
+
+</html>
+```
+
+现在要做的是在ie8下识别他们（坑）
+
+### 2.2  解决
+
+1. 在header标签中，加入一段js
+
+`document.createElement("header")`header可以替换为你需要的标签
+
+2. 在style中，给要兼容的标签加上对应的设置，如块级则：`display:block;`行内则display:inline;等
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    header {
+      background-color: red;
+      /* 2.0 header为块级元素 */
+      display: block;
+    }
+  </style>
+  <script>
+    /* 1.0  创建一次header标签即可 */
+    document.createElement("header");
+  </script>
+</head>
+
+<body>
+  <header>大头大头下雨不愁</header>
+</body>
+
+</html>
+```
+
+## 3  html5shiv.js
+
+在工作中，由于要兼容的标签比较多，不可能都是我们手动的处理，因此可以引用一个js文件，它的作用就是完成了上述的两个步骤的
+
+
+
+### 3.1  在线地址
+
+[html5shiv.js](https://cdn.bootcss.com/html5shiv/r29/html5.js)  如果失效，可自行百度即可。
+
+### 3.2  使用方法
+
+直接在head标签中引入即可
+
+### 3.3  条件注释
+
+对此解决步骤在做到细化，html5shiv.js只应该在某些低级浏览器中才会下载，某些高级版本的浏览器（如谷歌）是不应该下载该文件的，想要做到这个功能，最简单和常用的就是使用**条件注释**
+
+
+
+### 3.4  语法
+
+```html
+<!--[if IE]>用于 IE <![endif]-->
+<!--[if IE 6]>用于 IE6 <![endif]-->
+<!--[if IE 7]>用于 IE7 <![endif]-->
+<!--[if IE 8]>用于 IE8 <![endif]-->
+<!--[if IE 9]>用于 IE9 <![endif]-->
+<!--[if gt IE 6]> 用于 IE6 以上版本<![endif]-->
+<!--[if lte IE 7]> 用于 IE7或更低版本 <![endif]-->
+<!--[if gte IE 8]>用于 IE8 或更高版本 <![endif]-->
+<!--[if lt IE 9]>用于 IE9 以下版本<![endif]-->
+<!--[if !IE]> -->用于非 IE <!-- <![endif]-->
+```
+
+测试
+
+```html
+<!--[if lte IE 8]> <script >alert("ie8以及以下会被执行");</script> <![endif]-->
+```
+
+用法
+
+```html
+<!--[if lte IE 8]> <script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"></script> <![endif]-->
+```
+
+##  4  css3兼容处理
+
+css3涉及到较多的新属性，某些低版本（如ie8及以下）的浏览器对css3的技术支持程度不够，因此需要做以下处理
+
+添加对应的浏览器的前缀，常见前缀如下
+
+- 谷歌 -webkit
+- 火狐 -moz
+- IE -ms
+
+如对`border-radius`进行兼容处理
+
+```css
+-webkit-border-radius: 30px 10px;
+-moz-border-radius: 30px 10px;
+-ms-border-radius: 30px 10px;
+// border-radius 一定要放在最后
+border-radius: 30px 10px;
+```
+
+如果发现添加前缀也解决不了兼容性问题，那么就不要使用该css3属性
