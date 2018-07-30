@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .from {
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+            float: left;
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+
+        .to {
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="from">
+        <div draggable="true" class="box"></div>
+    </div>
+    <div class="to"></div>
+</body>
+<script>
+    /* 8个事件
+                                4个被拖拽的元素
+                                4个容器元素
+
+                                1   关于拖拽，不用拖拽事件，也可以完成拖拽功能
+                                2   使用拖拽事件，更加的方便来控制整个拖拽的状态
+                                3   真正完成拖拽的功能，只用到了两个事件 */
+
+    var box = document.querySelector(".box");
+    var to = document.querySelector(".to");
+
+    // 开始拖拽，触发一次
+    box.ondragstart = function () {
+        // console.log("start");
+    }
+
+    //正在拖拽的时候，持续的触发
+    box.ondrag = function () {
+        // console.log("drag");
+    }
+
+    //离开自身范围的时候 触发 触发 一次
+    box.ondragleave = function () {
+        // console.log("leave");
+    }
+
+    //结束拖拽 松开手  触发 一次
+    box.ondragend = function () {
+        // console.log("end");
+    }
+
+    // 当拖拽的元素 离开容器范围的时候 触发了一次
+    to.ondragleave = function () {
+        // console.log("leave");
+    }
+
+    // 当拖拽的元素 出现在容器范围内的  持续的触发
+    to.ondragover = function (e) {
+        // console.log("dragover");
+
+        // 阻止默认行为
+        e.preventDefault();
+    }
+
+    //当被拖拽的元素出现在容器内的时候，松开手的时候触发
+    to.ondrop=function(){
+    // console.log("drop");
+  }
+</script>
+
+</html>

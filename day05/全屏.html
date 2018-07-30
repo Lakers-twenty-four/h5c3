@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/IMG_2139.GIF" alt="">
+    <script>
+        var img = document.querySelector("img");
+        img.onclick = function () {
+            // 全屏
+            // img.requestFullscreen();
+
+            // 谷歌 webkit
+            // img.webkitRequestFullscreen();
+            // img.webkitRequestFullScreen();
+
+            // 火狐 moz webkitRequestFullScreen
+            // img.mozRequestFullScreen();
+            // 微软 ms   小写 的s
+            // img.msRequestFullscreen();
+
+
+            // 能力检测
+            if (img.webkitRequestFullScreen) {
+                img.webkitRequestFullScreen();
+            } else if (img.mozRequestFullScreen) {
+                img.mozRequestFullScreen();
+            } else if (img.msRequestFullscreen) {
+                img.msRequestFullscreen();
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file">
+    <img src="" alt="">
+</body>
+<script>
+    var inputFile = document.querySelector("input");
+    var img = document.querySelector("img");
+
+    inputFile.onchange = function () {
+        //1.获取上传的文件
+        var file = this.files[0];
+
+        //2.创建文件读取器
+        var fr = new FileReader();
+
+        //3.读取图片
+        fr.readAsDataURL(file);
+
+        //4.文件读取完毕事件
+        fr.onload = function () {
+            //5.获取读取结果
+            var url = fr.result;
+
+            /* base64  一种文件的编码
+            读取的图片
+            返回的是字符串
+            base64 是一种很长的字符串=>描述一个文件
+                新的文件的格式
+            以前：上传我呢见
+                以前的旧的版本的ajax是不支持上传文件=>上传字符串
+                业务：
+                上传头像到后台，后台来保存头像
+                1.接收头像文件
+                2.把文件存放到服务器电脑 
+                3.同时需要把图片的路径存在数据库里面
+            上传头像到后台，后台来保存头像，就是文本而已
+            后台只需要存放字符串 */
+
+            // console.log(url);
+
+            //6.给图片设置路径
+            img.src = url;
+        }
+    }
+</script>
+</html>

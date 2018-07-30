@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 复习：清除浮动 */
+
+        /* 1.单伪元素标签法 */
+
+        /* .clearfix::after {
+            content: ".";
+            height: 0;
+            line-height: 0;
+            visibility: hidden;
+            display: block;
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        } */
+
+        /* 双伪元素标签法 */
+
+        /* .clearfix::before,
+        .clearfix::after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix::after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        } */
+
+        div::first-letter {
+            font-size: 50px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* div::first-line {
+            background-color: pink;
+            color: #fff ;
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- 伪元素
+    1  不是真正的dom元素
+    2  通过js不可以获取到伪元素吗？
+    3  通过jq可以吗  不可以
+    4  单标签加伪元素没有效果
+    5  content属性，一定要赋值，否则伪元素不会出现
+    6  还有哪些伪元素
+        1. after
+        2. first-letter
+        3. first-line
+    7  什么是伪类，和什么是伪元素
+        :hover
+        :after
+    8  h5规定
+        1.伪类统统使用单冒号:
+        2.伪元素，使用双冒号:: -->
+    <div class="clearfix">
+        刘人语原创歌曲《麻烦少女》
+    </div>
+    <script>
+        var dom = document.querySelector("div::first-letter");
+        consoel.log(dom);
+    </script>
+</body>
+
+</html>

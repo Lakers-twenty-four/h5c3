@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .from {
+            width: 400px;
+            height: 400px;
+            background-color:yellow;
+            float: left;
+        }
+        .box {
+            width: 50px;
+            height: 42px;
+            background: url("./img/20180413030522253.jpg") no-repeat ;
+            background-size: 100%;
+        }
+        .to {
+            width:400px;
+            height: 400px;
+            background: pink;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 拖拽
+    1.可以把标签拖来拖去
+    2.可视化编程
+    3.a标签和图片标签天生是可以拖拽的，其他不行
+        可以给其他标签，添加属性 draggable
+    4.浏览器默认是不允许托拽行为的：默认不允许
+        阻止浏览器的默认行为 -->
+
+    <!-- <a href="javascript:;">百度</a>
+    <img src="./static/my.jpg" alt="">
+    <p draggable="true">动动我试试!!! </p> -->
+
+    <div class="from">
+        <div class="box" draggable="true">
+        </div>
+    </div>
+    <div class="to"></div>
+</body>
+<script>
+   var from=document.querySelector(".from");
+    var box=document.querySelector(".box");
+    var to=document.querySelector(".to");
+
+    //当被拖拽的元素出现在容器内的时候，持续地触发
+    // to.ondragover = function (e) {
+    //     //阻止浏览器默认行为
+    //     e.preventDefault();
+    // }
+
+    to.addEventListener("dragover",function(e){
+        //阻止浏览器默认行为
+        e.preventDefault();
+    });
+
+    //当被拖拽的元素出现在容器内的时候，松开手的时候触发
+    to.ondrop = function () {
+        console.log(22);
+
+        //克隆一个节点
+        var cloneBx = box.cloneNode();
+        to.appendChild(cloneBx);
+    }
+</script>
+</html>

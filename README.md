@@ -1400,8 +1400,24 @@ p:nth-child(2) {
 
 1. 有哪些特点
 
-- ：：冒号
-- 但标签不能加伪元素
+- 不是真正的dom元素
+- 通过js不可以获取到伪元素
+- 通过jq也不可以 
+
+```js
+<div class="clearfix">
+  刘人语原创歌曲《麻烦少女》
+</div>
+<script>
+  var dom = document.querySelector("div::first-letter");
+  consoel.log(dom);
+</script>
+```
+
+![](./mdImg/伪元素1.png)
+
+- ::  冒号
+- 单标签不能加伪元素
 - content:""
 - 通过js或者jq拿不到伪元素
 - first-letter
@@ -1416,10 +1432,66 @@ p:nth-child(2) {
 
 1. E::before   在E元素前插入一个元素
 2. E::after  在E元素后插入一个元素
-3. E::first-letter 选择到了E容器内的第一个字母  
-4. E::first-line 选择到了E容器内的第一行文本
 
-### 6.2  h5写法和传统写法区别了解
+```css
+/* 复习：清除浮动 */
+
+/* 1.单伪元素标签法 */
+
+.clearfix::after {
+  content: ".";
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/* 双伪元素标签法 */
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+```
+
+   3.E::first-letter 选择到了E容器内的第一个字母  
+
+```css
+div::first-letter {
+            font-size: 50px;
+            background-color: #000;
+            color: #fff;
+        }
+```
+
+   ![](./mdImg/伪元素3.png)
+
+   4.E::first-line 选择到了E容器内的第一行文本
+
+```css
+div::first-line {
+            background-color: pink;
+            color: #fff ;
+        }
+```
+
+![](./mdImg/伪元素2.png)
+
+### 6.2  h5写法和传统写法区别  了解
 
 1. 单冒号`E:before`
 2. 双冒号`::before`
@@ -1777,3 +1849,381 @@ border-radius: 30px 10px;
 ```
 
 如果发现添加前缀也解决不了兼容性问题，那么就不要使用该css3属性
+
+## 5  video
+
+[github-video笔记](https://github.com/Lakers-twenty-four/video)
+
+
+
+## 6  网络状态（了解）
+
+### 6.1  描述
+
+假如当我们正在使用视频标签播放视频，突然断网了，应该给出用户的一些提示。那么h5的网络状态api就可以做到。
+
+我们可以在谷歌浏览器模拟断网
+
+![](./mdImg/网络状态1.png)
+
+### 6.2  属性--navigator.onLine
+
+```js
+// 检测用户的网络状态，  可以上网 true  不能上网 false
+alert(navigator.onLine);
+```
+
+### 6.3  事件1--window.ononline 连接上网的时候自动触发
+
+```js
+// online
+window.addEventListener("online",function () {
+  console.log("可以上网了");
+})
+```
+
+### 6.4  事件2--window.onoffline  断开网络的时候自动触发
+
+```js
+// offline
+window.addEventListener("offline",function () {
+  console.log("已经断网了");
+})
+```
+
+
+
+## 7  全屏（了解）
+
+### 7.1  描述
+
+全屏是指可以让任意一个dom元素，直接变成到屏幕这么大。如
+
+![](./mdImg/全屏2.png)
+
+```js
+<script>
+  var img = document.querySelector("img");
+  img.onclick = function () {
+  // 全屏
+  // img.requestFullscreen();
+
+  // 谷歌 webkit
+  // img.webkitRequestFullscreen();
+  // img.webkitRequestFullScreen();
+
+  // 火狐 moz webkitRequestFullScreen
+  // img.mozRequestFullScreen();
+  // 微软 ms   小写 的s
+  // img.msRequestFullscreen();
+
+
+  // 能力检测
+  if (img.webkitRequestFullScreen) {
+    img.webkitRequestFullScreen();
+  } else if (img.mozRequestFullScreen) {
+    img.mozRequestFullScreen();
+  } else if (img.msRequestFullscreen) {
+    img.msRequestFullscreen();
+  }
+
+}
+
+</script>
+```
+
+![](./mdImg/全屏3.png)
+
+
+
+## 8  文件读取api（了解）
+
+### 8.1  描述
+
+文件读取功能增强了浏览器的功能
+
+- 电脑上的**普通文本(a.txt)**解析成字符串
+- 电脑上的**视频，音频，图片**直接以文本上传的方式加载到浏览器中
+
+### 8.2  步骤
+
+```html
+<body>  
+  <!-- 上传输入框 -->
+  <input type="file">
+</body>
+<script>
+  // 0 获取dom对象
+  var input=document.querySelector("input");
+
+  // 1 文件上传成功时 
+  input.onchange=function(){
+    // 2 获取上传好的文件对象
+    var file=input.files[0];
+    // 3 创建文件读取对象
+    var fr=new FileReader();
+    // 4 开始读取文本文件
+    fr.readAsText(file);
+    // 5 读取完毕后
+    fr.onload=function(){
+      // 获取文本内容
+      var result=fr.result;// result 就是改文本中的内容 
+    }
+  }
+</script>
+```
+
+### 8.3  api分开介绍
+
+- 创建的file实例
+
+> var fileReader = new FileReader() 
+
+- fileReader.readAsText()  读取文本
+  - 默认是以utf-8的格式读取
+  - readAsText("gbk")的格式读取
+- fileReader.readAsDataURL  可以读取视频，音频，图像
+  - 返回的是base64格式的字符串
+  - 读取文件的路径图片、视频、音乐
+- fileReader.onload  读取文件结束后执行
+- fileReader.result  获取读取完的文件的结果
+
+### 8.4  实例
+
+#### 8.4.1  读取文本
+
+```js
+<script>
+  var input = document.querySelector("input");
+  var div = document.querySelector("div");
+
+  //当文件上传完毕之后，会触发
+  input.onchange = function () {
+    //file存的是上传的文件的数组
+    //console.log(this.files);
+    var file = this.files[0];
+
+    //创建一个文件读取器
+    var fr = new FileReader();
+    //读取文本
+    //1  文本也是分格式  也是 utf-8
+    //2  读取器默认是以utf-8的格式去读取文本
+    //3  使用vscode，新建txt格式默认就是utf-8
+    //4  在桌面，使用鼠标右键，新建文件默认格式就是gbk
+    // fr.readAsText(file,"gbk")
+    fr.readAsText(file);
+
+    //文件读取完毕之后
+    fr.onload = function () {
+      //获取文本的内容
+      var text = fr.result;
+      //console.log(text);
+
+      div.innerText = text;
+    }
+  }
+  </script>
+```
+
+![](./mdImg/读取本地文件1.png)
+
+![](./mdImg/读取本地文件2.png)
+
+#### 8.4.2  读取图片
+
+```js
+<script>
+    var inputFile = document.querySelector("input");
+    var img = document.querySelector("img");
+
+    inputFile.onchange = function () {
+        //1.获取上传的文件
+        var file = this.files[0];
+
+        //2.创建文件读取器
+        var fr = new FileReader();
+
+        //3.读取图片
+        fr.readAsDataURL(file);
+
+        //4.文件读取完毕事件
+        fr.onload = function () {
+            //5.获取读取结果
+            var url = fr.result;
+
+            /* base64  一种文件的编码
+            读取的图片
+            返回的是字符串
+            base64 是一种很长的字符串=>描述一个文件
+                新的文件的格式
+            以前：上传我呢见
+                以前的旧的版本的ajax是不支持上传文件=>上传字符串
+                业务：
+                上传头像到后台，后台来保存头像
+                1.接收头像文件
+                2.把文件存放到服务器电脑 
+                3.同时需要把图片的路径存在数据库里面
+            上传头像到后台，后台来保存头像，就是文本而已
+            后台只需要存放字符串 */
+
+            // console.log(url);
+
+            //6.给图片设置路径
+            img.src = url;
+        }
+    }
+</script>
+```
+
+![](./mdImg/读取本地文件3.png)
+
+8.4.3  读取视频
+
+```js
+<script src="./js/video.js.js"></script>
+  <script>
+    var inputFile = document.querySelector("input");
+  	var source = document.querySelector("source");
+  	console.log(source.src);
+  	var video = document.querySelector("video");
+
+    inputFile.onchange = function () {
+      var file = this.files[0];
+      var fr = new FileReader();
+      fr.readAsDataURL(file);
+      fr.onload = function () {
+        var src = fr.result;
+        video.src = src;
+      }
+    }
+  </script>
+```
+
+![](./mdImg/读取本地文件4.png)
+
+## 9  拖拽（了解）
+
+### 9.1  描述
+
+h5标准中，页面中的任何元素都是可以进行拖拽的，允许将一个元素拖到另一个元素里面。
+
+![](./mdImg/拖拽1.gif)
+
+想要实现以上效果，只使用以前学过的知识，也能实现。只不过，使用h5拖拽，会更加方便。
+
+### 9.2  案例![](./mdImg/拖拽1.png)
+
+以上案例，我们只使用了两个拖拽事件即可完成，**drogover**和**drop**他们的解释看下文
+
+#### 9.2.1  步骤1
+
+准备一个div容器，准备一个p，用来拖拽
+
+```html
+<!-- 拖拽
+  1.可以把标签拖来拖去
+  2.可视化编程
+  3.a标签和图片标签天生是可以拖拽的，其他不行
+  可以给其他标签，添加属性 draggable
+  4.浏览器默认是不允许托拽行为的：默认不允许
+  阻止浏览器的默认行为 -->
+
+  <!-- <a href="javascript:;">百度</a>
+  <img src="./static/my.jpg" alt="">
+  <p draggable="true">动动我试试!!! </p> -->
+
+<div class="from">
+  <div class="box" draggable="true">
+  </div>
+</div>
+<div class="to"></div>
+```
+
+#### 9.2.2  步骤2
+
+.box这个div标签添加一个新属性，允许拖拽 **draggable="true"**否则，鼠标拖动标签没有效果
+
+![](./mdImg/拖拽2.png)
+
+#### 9.2.3  步骤3
+
+在js中写入以下代码
+
+```js
+<script>
+   var from=document.querySelector(".from");
+    var box=document.querySelector(".box");
+    var to=document.querySelector(".to");
+
+    //当被拖拽的元素出现在容器内的时候，持续地触发
+    // to.ondragover = function (e) {
+    //     //阻止浏览器默认行为
+    //     e.preventDefault();
+    // }
+
+    to.addEventListener("dragover",function(e){
+        //阻止浏览器默认行为
+        e.preventDefault();
+    });
+
+    //当被拖拽的元素出现在容器内的时候，松开手的时候触发
+    to.ondrop = function () {
+        console.log(22);
+
+        //克隆一个节点
+        var cloneBx = box.cloneNode();
+        to.appendChild(cloneBx);
+    }
+</script>
+```
+
+
+
+### 9.3  拖拽api
+
+一共有8个拖拽事件
+
+```js
+// 开始拖拽，触发一次
+box.ondragstart = function () {
+  // console.log("start");
+}
+
+//正在拖拽的时候，持续的触发
+box.ondrag = function () {
+  // console.log("drag");
+}
+
+//离开自身范围的时候 触发 触发 一次
+box.ondragleave = function () {
+  // console.log("leave");
+}
+
+//结束拖拽 松开手  触发 一次
+box.ondragend = function () {
+  // console.log("end");
+}
+
+// 当拖拽的元素 离开容器范围的时候 触发了一次
+to.ondragleave = function () {
+  // console.log("leave");
+}
+
+// 当拖拽的元素 出现在容器范围内的  持续的触发
+to.ondragover = function (e) {
+  // console.log("dragover");
+
+  // 阻止默认行为
+  e.preventDefault();
+}
+
+//当被拖拽的元素出现在容器内的时候，松开手的时候触发
+to.ondrop=function(){
+  // console.log("drop");
+```
+
+## 10  地理位置（了解）
+
+### 10.1  百度地图的使用
+
+[百度地图开发者](http://lbsyun.baidu.com/)

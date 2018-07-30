@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HTML5 概念
+    1  是HTML4的升级版
+    2  HTML5 做了一些新增加和优化
+        1  语义化标签
+        2  多媒体标签
+        3  画布标签 canvas
+        4  新的JavaScript的api
+        5  增强了浏览器的本地应用的能力
+            文本读取    web版本的文本阅读器
+            文本        
+            视频
+            图片
+            文本分格式  UTF-8  现在用得最多的中文
+                       gbk  也是中文格式
+        6  开发者没有办法用一套代码，去读取两种不同的文本的格式
+        7  以前读取文本的过程
+           前端上传文件=>发送到后台=>后台判断文本的类型，读取文本内容=>json字符串返回到前端
+           前端接收到了=>把字符串显示到div中 -->   
+    <input type="file">
+    <h2>假如出现乱码了，建议把文本改为utf-8格式</h2>
+    <div></div>
+    <script>
+        var input = document.querySelector("input");
+        var div = document.querySelector("div");
+
+        //当文件上传完毕之后，会触发
+        input.onchange = function () {
+            //file存的是上传的文件的数组
+            //console.log(this.files);
+            var file = this.files[0];
+
+            //创建一个文件读取器
+            var fr = new FileReader();
+            //读取文本
+            //1  文本也是分格式  也是 utf-8
+            //2  读取器默认是以utf-8的格式去读取文本
+            //3  使用vscode，新建txt格式默认就是utf-8
+            //4  在桌面，使用鼠标右键，新建文件默认格式就是gbk
+            // fr.readAsText(file,"gbk")
+            fr.readAsText(file);
+
+            //文件读取完毕之后
+            fr.onload = function () {
+                //获取文本的内容
+                var text = fr.result;
+                //console.log(text);
+
+                div.innerText = text;
+            }
+        }
+    </script>
+</body>
+</html>
